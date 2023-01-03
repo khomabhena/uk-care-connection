@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import DashboardContainer from './components/Dashboard/DashboardContainer';
+import Menubar from './components/Dashboard/Menubar';
+import Sidebar from './components/Dashboard/Sidebar';
+import MenuItems from './components/Dashboard/MenuItems'
+import TopContent from './components/Dashboard/TopContent';
+import RightSide from './components/Dashboard/RightSide';
+import MainContent from './components/Dashboard/MainContent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DashboardContainer>
+      <Sidebar>
+        <Menubar />
+        <MenuItems className='active' icon={<span class="material-symbols-outlined">home_app_logo</span>} title='Home' />
+      </Sidebar>
+      <RightSide>
+        <TopContent />
+        <MainContent />
+      </RightSide>
+    </DashboardContainer>
   );
 }
 
