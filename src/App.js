@@ -1,4 +1,5 @@
 import './App.css';
+import ApplicantDashboard from './components/Applicant/Dashboard';
 import DashboardContainer from './components/Dashboard/Container';
 import Logout from './components/Dashboard/Logout';
 import MainContent from './components/Dashboard/MainContent';
@@ -9,18 +10,10 @@ import Sidebar from './components/Dashboard/Sidebar';
 
 function App() {
   return (
-    <DashboardContainer>
-      <Sidebar></Sidebar>
-      <MainContent>
-        <Navbar>
-          <MenuIcon title='Applicant Dashboard'><span class="material-symbols-outlined">menu</span></MenuIcon>
-          <NavbarDetails>
-            <Logout />
-          </NavbarDetails>
-        </Navbar>
-      </MainContent>
-    </DashboardContainer>
-  );
+      <ApplicantDashboard>
+
+      </ApplicantDashboard>
+    );
 }
 
 export default App;
