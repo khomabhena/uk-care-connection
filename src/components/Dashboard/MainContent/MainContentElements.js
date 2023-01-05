@@ -12,8 +12,8 @@ export const Container = styled.div`
     transition: .2s all ease-in-out;
 
     @media screen and (max-width: 768px) {
-        left: ${({isOpen}) => (isOpen ? '30%': '0')};
-        width: ${({isOpen}) => (isOpen ? '100%': '100%')};
+        left: ${({isOpen}) => (isOpen ? '40%': '15%')};
+        width: ${({isOpen}) => (isOpen ? '100%': '85%')};
     }
 
     @media screen and (max-width: 640px) {

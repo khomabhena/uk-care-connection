@@ -9,7 +9,7 @@ export const Container = styled.div`
     z-index: 9;
     
     @media screen and (max-width: 768px) {
-        width: ${({isOpen}) => (isOpen ? '30%': '0')};
+        width: ${({isOpen}) => (isOpen ? '40%': '15%')};
     }
 
     @media screen and (max-width: 640px) {
