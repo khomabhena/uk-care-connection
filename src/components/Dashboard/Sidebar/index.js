@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container, SidebarWrap } from './SidebarElements'
 
-const Sidebar = ({children}) => {
+const Sidebar = ({children, isOpen}) => {
   return (
-    <Container className='sidebar'>
+    <Container isOpen={isOpen} className='sidebar'>
       {children}
     </Container>
   )

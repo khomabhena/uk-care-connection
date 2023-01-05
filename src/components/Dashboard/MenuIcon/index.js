@@ -1,10 +1,11 @@
 import React from 'react'
 import { Container, Heading } from './MenuIconElements'
 
-const MenuIcon = ({children, title}) => {
+const MenuIcon = ({title, toggleSidebar}) => {
   return (
     <Container>
-      {children} <Heading>{title}</Heading>
+      <span onClick={toggleSidebar} className="material-symbols-outlined">menu</span>
+       <Heading>{title}</Heading>
     </Container>
   )
 }

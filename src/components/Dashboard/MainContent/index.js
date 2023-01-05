@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container } from './MainContentElements'
 
-const MainContent = ({children}) => {
+const MainContent = ({children, isOpen}) => {
   return (
-    <Container className='main-content'>
+    <Container isOpen={isOpen} className='main-content'>
       {children}
     </Container>
   )
