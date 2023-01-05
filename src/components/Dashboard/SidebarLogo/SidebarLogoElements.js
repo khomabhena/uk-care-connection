@@ -5,6 +5,8 @@ export const Logo = styled.img`
     height: 55px;
     object-fit: cover;
     margin: 2rem 1rem;
+    display: ${({isOpen}) => (isOpen ? 'visible': 'none')};
+    transition: 1s all ease-in-out;
 
     @media screen and (max-width: 768px) {
         width: 40px;

@@ -13,6 +13,7 @@
   --primaryLight: #17E9E1;
   --primaryWhite: #F5FAFA;
   --blueAlpha: #1D63DC50;
+  --hover: #0080ff1e;
 
   --greyDark: #495057;
   --grey: #74788d;
@@ -58,4 +59,9 @@
 .material-symbols-outlined {
   color: var(--primaryDark);
   font-size: 1.6rem;
+}
+
+.white-icon .material-symbols-outlined {
+  color: var(--blue400);
+  /* font-size: 6rem; */
 }

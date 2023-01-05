@@ -8,6 +8,9 @@ import NavbarDetails from '../Dashboard/NavbarDetails'
 import Sidebar from '../Dashboard/Sidebar'
 import person from '../../images/person.jpg'
 import SidebarLogo from '../Dashboard/SidebarLogo'
+import MenuItemsWrap from '../Dashboard/MenuItemsWrap'
+import {ApplicantData} from '../Applicant/Data'
+import MenuItem from '../Dashboard/MenuItem'
 
 const ApplicantDashboard = () => {
 
@@ -20,7 +23,19 @@ const ApplicantDashboard = () => {
   return (
     <DashboardContainer>
       <Sidebar isOpen={isOpen} className='applicant-sidebar'>
-        <SidebarLogo />
+        <SidebarLogo isOpen={isOpen} />
+        <MenuItemsWrap>
+          {
+            ApplicantData().getMenuItems()?.map((item, index) => {
+              const icon = item.icon
+              const name = item.name
+
+              return (
+                <MenuItem isOpen={isOpen} key={index} icon={icon} name={name} />
+              )
+            })
+          }
+        </MenuItemsWrap>
       </Sidebar>
       <MainContent isOpen={isOpen} className='applicant-main-content'>
         <Navbar>

@@ -2,9 +2,9 @@ import React from 'react'
 import { Logo } from './SidebarLogoElements'
 import logo from '../../../images/ukcare-logo-heart.png'
 
-const SidebarLogo = () => {
+const SidebarLogo = ({isOpen}) => {
   return (
-    <Logo src={logo} />
+    <Logo isOpen={isOpen} src={logo} />
   )
 }
 
