@@ -7,7 +7,7 @@ import Navbar from '../Dashboard/Navbar'
 import NavbarDetails from '../Dashboard/NavbarDetails'
 import Sidebar from '../Dashboard/Sidebar'
 import person from '../../images/person.jpg'
-import logo from '../../images/ukcare-logo-heart.png'
+import SidebarLogo from '../Dashboard/SidebarLogo'
 
 const ApplicantDashboard = () => {
 
@@ -20,6 +20,7 @@ const ApplicantDashboard = () => {
   return (
     <DashboardContainer>
       <Sidebar isOpen={isOpen} className='applicant-sidebar'>
+        <SidebarLogo />
       </Sidebar>
       <MainContent isOpen={isOpen} className='applicant-main-content'>
         <Navbar>

@@ -2,10 +2,10 @@ import React from 'react'
 import { Logo } from './SidebarLogoElements'
 import logo from '../../../images/ukcare-logo-heart.png'
 
-const SiebarLogo = () => {
+const SidebarLogo = () => {
   return (
     <Logo src={logo} />
   )
 }
 
-export default SiebarLogo
+export default SidebarLogo
