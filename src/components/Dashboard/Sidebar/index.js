@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, SidebarWrap } from './SidebarElements'
+import { Container } from './SidebarElements'
 
 const Sidebar = ({children, isOpen}) => {
   return (
