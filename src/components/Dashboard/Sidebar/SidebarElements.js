@@ -4,6 +4,7 @@ export const Container = styled.div`
     position: fixed;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     width: ${({isOpen}) => (isOpen ? '20%': '0')};
     background-color: var(--primaryDark);
     height: 100vh;

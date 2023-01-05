@@ -7,6 +7,7 @@ import Navbar from '../Dashboard/Navbar'
 import NavbarDetails from '../Dashboard/NavbarDetails'
 import Sidebar from '../Dashboard/Sidebar'
 import person from '../../images/person.jpg'
+import logo from '../../images/ukcare-logo-heart.png'
 
 const ApplicantDashboard = () => {
 
@@ -18,7 +19,8 @@ const ApplicantDashboard = () => {
 
   return (
     <DashboardContainer>
-      <Sidebar isOpen={isOpen} className='applicant-sidebar'></Sidebar>
+      <Sidebar isOpen={isOpen} className='applicant-sidebar'>
+      </Sidebar>
       <MainContent isOpen={isOpen} className='applicant-main-content'>
         <Navbar>
           <MenuIcon toggleSidebar={toggleSidebar} className='applicant-menu' title='Applicant Dashboard' />
