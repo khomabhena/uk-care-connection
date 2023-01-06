@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardContainer from '../Dashboard/Container'
 import Logout from '../Dashboard/Logout'
 import MainContent from '../Dashboard/MainContent'
@@ -15,10 +15,16 @@ import MenuItem from '../Dashboard/MenuItem'
 const ApplicantDashboard = () => {
 
   const [isOpen, setIsOpen] = useState(true)
-
+  const [active, setActive] = useState('Profile')
+  
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
   }
+
+  const handleClick = (name) => {
+    setActive(name)
+  }
+  
 
   return (
     <DashboardContainer>
@@ -31,7 +37,13 @@ const ApplicantDashboard = () => {
               const name = item.name
 
               return (
-                <MenuItem isOpen={isOpen} key={index} icon={icon} name={name} />
+                <MenuItem 
+                  handleClick={() => handleClick(name)}
+                  isActive={active === name} 
+                  isOpen={isOpen} 
+                  key={index} 
+                  icon={icon} 
+                  name={name} />
               )
             })
           }
