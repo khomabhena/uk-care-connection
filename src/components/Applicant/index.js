@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import DashboardContainer from '../Dashboard/Container'
 import Logout from '../Dashboard/Logout'
 import MainContent from '../Dashboard/MainContent'
@@ -24,30 +24,27 @@ const ApplicantDashboard = () => {
   const handleClick = (name) => {
     setActive(name)
   }
+
+  const getMenuItems = () => {
+    return ApplicantData().getMenuItems()?.map(({name, icon}, index) => {
+      return (
+        <MenuItem 
+          handleClick={() => handleClick(name)}
+          isActive={active === name} 
+          isOpen={isOpen} 
+          key={index} 
+          icon={icon} 
+          name={name} />
+      )
+    })
+  }
   
 
   return (
     <DashboardContainer>
       <Sidebar isOpen={isOpen} className='applicant-sidebar'>
         <SidebarLogo isOpen={isOpen} />
-        <MenuItemsWrap>
-          {
-            ApplicantData().getMenuItems()?.map((item, index) => {
-              const icon = item.icon
-              const name = item.name
-
-              return (
-                <MenuItem 
-                  handleClick={() => handleClick(name)}
-                  isActive={active === name} 
-                  isOpen={isOpen} 
-                  key={index} 
-                  icon={icon} 
-                  name={name} />
-              )
-            })
-          }
-        </MenuItemsWrap>
+        <MenuItemsWrap>{getMenuItems()}</MenuItemsWrap>
       </Sidebar>
       <MainContent isOpen={isOpen} className='applicant-main-content'>
         <Navbar>
