@@ -7,8 +7,8 @@ export const Container = styled.div`
 `
 
 export const Image = styled.img`
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     object-fit: cover;
     border-radius: 50%;
 

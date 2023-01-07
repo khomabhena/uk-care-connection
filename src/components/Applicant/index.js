@@ -11,11 +11,13 @@ import SidebarLogo from '../Dashboard/SidebarLogo'
 import MenuItemsWrap from '../Dashboard/MenuItemsWrap'
 import {ApplicantData} from '../Applicant/Data'
 import MenuItem from '../Dashboard/MenuItem'
-
+import Overview from './Overview'
+import OverviewInfo from './OverviewInfo'
+import OverviewAbout from './OverviewAbout'
 const ApplicantDashboard = () => {
 
   const [isOpen, setIsOpen] = useState(true)
-  const [active, setActive] = useState('Profile')
+  const [active, setActive] = useState('Jobs')
   
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
@@ -53,6 +55,12 @@ const ApplicantDashboard = () => {
             <Logout />
           </NavbarDetails>
         </Navbar>
+
+        {active === 'Profile' && <Overview>
+          <OverviewInfo></OverviewInfo>
+          <OverviewAbout></OverviewAbout>
+        </Overview>}
+
       </MainContent>
     </DashboardContainer>
   )
