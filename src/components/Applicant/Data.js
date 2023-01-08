@@ -16,7 +16,7 @@ export const ApplicantData = () => {
             },
             {
                 icon: '<span class="material-symbols-outlined">work</span>',
-                name: 'Job Applications',
+                name: 'Applications',
                 isActive: false
             },
             {

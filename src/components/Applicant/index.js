@@ -25,6 +25,7 @@ import JobsSuggested from './JobsSuggested'
 import JobDetails from './JobDetails'
 import JobCard from './JobCard'
 import JobCardDetails from './JobCardDetails'
+import Applications from './Applications'
 
 const ApplicantDashboard = () => {
 
@@ -105,6 +106,13 @@ const ApplicantDashboard = () => {
                 <JobCardDetails />
               </JobDetails>
             </Job>
+        }
+
+        {
+          active === 'Applications' &&
+            <Applications>
+              
+            </Applications>
         }
 
       </MainContent>
