@@ -31,7 +31,7 @@ export const EducationWrap = styled.div`
 `
 
 export const LetterWrap = styled.div`
-    background: var(--iconAlpha);
+    background: var(--blueAlpha);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +61,7 @@ export const SkillsContainer = styled.div`
 `
 
 export const SkillsWrap = styled.div`
-    background: var(--iconAlpha);
+    background: var(--blueAlpha);
     display: flex;
     justify-content: center;
     align-items: center;

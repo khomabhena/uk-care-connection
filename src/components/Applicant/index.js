@@ -14,10 +14,17 @@ import MenuItem from '../Dashboard/MenuItem'
 import Overview from './Overview'
 import OverviewInfo from './OverviewInfo'
 import OverviewAbout from './OverviewAbout'
+import Update from './Update'
+import UpdateForm from './UpdateForm'
+import Qualifications from './Qualifications'
+import QualificationForm from './QualificationsFrom'
+import Experience from './Experience'
+import ExperienceForm from './ExperienceForm'
+
 const ApplicantDashboard = () => {
 
   const [isOpen, setIsOpen] = useState(true)
-  const [active, setActive] = useState('Jobs')
+  const [active, setActive] = useState('Profile')
   
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
@@ -60,6 +67,27 @@ const ApplicantDashboard = () => {
           <OverviewInfo></OverviewInfo>
           <OverviewAbout></OverviewAbout>
         </Overview>}
+
+        { 
+          active === 'Update' && 
+            <Update>
+              <UpdateForm />
+            </Update>
+        }
+
+        {
+          active === 'Qualifications' &&
+            <Qualifications>
+              <QualificationForm />
+            </Qualifications>
+        }
+
+        {
+          active === 'Experience' &&
+            <Experience>
+              <ExperienceForm />
+            </Experience>
+        }
 
       </MainContent>
     </DashboardContainer>

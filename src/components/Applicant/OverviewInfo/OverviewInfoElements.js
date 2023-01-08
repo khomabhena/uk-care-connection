@@ -87,7 +87,7 @@ export const DocumentLeft = styled.div`
 export const DocumentRight = styled.div``
 
 export const IconWrapOutline = styled.div`
-    border: 1px solid var(--greyLight);
+    border: 1px solid var(--grey300);
     display: flex;
     justify-content: center;
     align-items: center;
