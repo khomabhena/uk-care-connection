@@ -20,6 +20,11 @@ import Qualifications from './Qualifications'
 import QualificationForm from './QualificationsFrom'
 import Experience from './Experience'
 import ExperienceForm from './ExperienceForm'
+import Job from './Job'
+import JobsSuggested from './JobsSuggested'
+import JobDetails from './JobDetails'
+import JobCard from './JobCard'
+import JobCardDetails from './JobCardDetails'
 
 const ApplicantDashboard = () => {
 
@@ -87,6 +92,19 @@ const ApplicantDashboard = () => {
             <Experience>
               <ExperienceForm />
             </Experience>
+        }
+
+        {
+          active === 'Jobs' &&
+            <Job>
+              <JobsSuggested>
+                <JobCard selected={true} />
+                <JobCard />
+              </JobsSuggested>
+              <JobDetails>
+                <JobCardDetails />
+              </JobDetails>
+            </Job>
         }
 
       </MainContent>

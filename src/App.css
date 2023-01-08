@@ -32,7 +32,7 @@
   --blue700: #1d4ed8;
   --blue800: #1e40af;
   --blue900: #1e3a8a;
-
+  
   --grey50: #f8fafc;
   --grey100: #f1f5f9;
   --grey200: #e2e8f0;
@@ -43,7 +43,9 @@
   --grey700: #334155;
   --grey800: #1e293b;
   --grey900: #0f172a;
-
+  
+  --green500: #1abb78;
+  
   --sm: 640px;
   --md: 768px;
   --lg: 1024px;

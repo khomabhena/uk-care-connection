@@ -15,6 +15,11 @@ export const ApplicantData = () => {
                 isActive: false
             },
             {
+                icon: '<span class="material-symbols-outlined">work</span>',
+                name: 'Job Applications',
+                isActive: false
+            },
+            {
                 icon: '<span class="material-symbols-outlined">update</span>',
                 name: 'Update',
                 isActive: false
