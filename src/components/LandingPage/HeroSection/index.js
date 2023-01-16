@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { ArrowForward, ArrowRight, BlobImg, HeroButton } from './HeroElements2'
 import { Hero2BtnWrapper, Hero2H1, Hero2H2, Hero2P, HeroImg, HeroSection2Container, TextContent } from './HeroElements2';
-import img from '../../images/svg-medical-care.svg'
-import blob from '../../images/blob2.png'
+import img from '../../../images/svg-medical-care.svg'
+import blob from '../../../images/blob2.png'
 
 const HeroSection = () => {
     const [hover, setHover] = useState(false);

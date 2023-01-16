@@ -90,6 +90,7 @@ export const NavLinks = styled(LinkS)`
 
     &.active {
         border-bottom: 3px solid var(--primaryDark);
+        background-color: transparent;
     }
 
     :hover {

@@ -3,7 +3,7 @@ import {FaBars} from 'react-icons/fa'
 import { MobileIcon, Nav, NavbarContainer, NavBtn, NavBtnLink, NavItem, NavLinks, NavLogo, NavMenu } from './NavbarElements'
 import { IconContext } from 'react-icons/lib'
 import { animateScroll as scroll } from 'react-scroll'
-import logo from '../../images/logo-big.PNG'
+import logo from '../../../images/logo-big.PNG'
 
 const Navbar = ({ toggle }) => {
 
