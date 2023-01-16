@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { ForgotPassword, ForgotPasswordDiv, LogoWrap, Input, Label, LeftSide, LoginButton, LoginContainer, LoginForm, LoginWrap, Logo, RightSide, SignupButton, Svg, TextSignin, TextWelcome, ErrorContainer, ErrorMessage } from './SignInElements'
-import logo from '../../images/logo-big.PNG'
-import svg from '../../images/svg-signin.svg'
+import logo from '../../../images/logo-big.PNG'
+import svg from '../../../images/svg-signin.svg'
 import { ImWarning } from 'react-icons/im'
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../Firebase'
+import { auth } from '../../../Firebase'
 import { IconContext } from 'react-icons'
-import { AuthContext } from '../Context/AuthContext'
+import { AuthContext } from '../../Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
@@ -70,7 +70,7 @@ const SignIn = () => {
                       <ForgotPassword>Forgot Password?</ForgotPassword>
                   </ForgotPasswordDiv>
                   <LoginButton type='submit'>Sign In</LoginButton>
-                  <SignupButton to="/signup">Don't have an account? Sign Up</SignupButton>
+                  <SignupButton to="/sign-up">Don't have an account? Sign Up</SignupButton>
               </LoginForm>
           </RightSide>
 

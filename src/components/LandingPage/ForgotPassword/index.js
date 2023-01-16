@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input, Label, LeftSide, LoginButton, LoginContainer, 
   LoginForm, LoginWrap, Logo, LogoWrap, RightSide, SignupButton, Svg, TextSignin, TextWelcome } from './ForgotPasswordElements'
-import logo from '../../images/logo-big.PNG'
-import svg from '../../images/svg-forgot-password.svg'
+import logo from '../../../images/logo-big.PNG'
+import svg from '../../../images/svg-forgot-password.svg'
 
 
 const ForgotPassword = () => {
@@ -22,7 +22,7 @@ const ForgotPassword = () => {
                   <Label>Email</Label>
                   <Input placeholder='Enter your email address' />
                   <LoginButton to="">Send Request</LoginButton>
-                  <SignupButton to="/signin">Remembered It? Go to Login</SignupButton>
+                  <SignupButton to="/sign-in">Remembered It? Go to Login</SignupButton>
               </LoginForm>
           </RightSide>
 

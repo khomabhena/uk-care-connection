@@ -19,7 +19,7 @@ const Sidebar = ({ isOpen, toggle }) => {
                 <SidebarLink to="signup" onClick={toggle}>Sign Up</SidebarLink>
             </SidebarMenu>
             <SideBtnWrap>
-                <SidebarRoute to="/employer-signin">Hire Care Workers</SidebarRoute>
+                <SidebarRoute to="/employer-sign-in">Hire Care Workers</SidebarRoute>
             </SideBtnWrap>
         </SidebarWrapper>
     </SidebarContainer>
