@@ -26,6 +26,8 @@ import JobDetails from './JobDetails'
 import JobCard from './JobCard'
 import JobCardDetails from './JobCardDetails'
 import Applications from './Applications'
+import ApplicationsDetails from './ApplicationsDetails'
+import ApplicationsMade from './ApplicationsMade'
 
 const ApplicantDashboard = () => {
 
@@ -99,8 +101,8 @@ const ApplicantDashboard = () => {
           active === 'Jobs' &&
             <Job>
               <JobsSuggested>
-                <JobCard selected={true} />
-                <JobCard />
+                <JobCard selected={true} date={true} />
+                <JobCard date={true} />
               </JobsSuggested>
               <JobDetails>
                 <JobCardDetails />
@@ -111,7 +113,13 @@ const ApplicantDashboard = () => {
         {
           active === 'Applications' &&
             <Applications>
-              
+              <ApplicationsMade>
+                <JobCard selected={true} pending={true} buttonName='Rejected' />
+                <JobCard buttonName='Pending' />
+              </ApplicationsMade>
+              <ApplicationsDetails>
+                <JobCardDetails status='Pending' />
+              </ApplicationsDetails>
             </Applications>
         }
 

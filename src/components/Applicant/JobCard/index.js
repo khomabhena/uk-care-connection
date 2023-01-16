@@ -1,7 +1,7 @@
 import React from 'react'
 import { ApplyButton, BottomWrap, CompanyName, Date, HorizontalLine, JobDescription, JobType, JobWrapper, Salary, SalaryWrap, Title } from './JobCardElements'
 
-const JobCard = ({selected}) => {
+const JobCard = ({selected, buttonName, date}) => {
     const duties = "Certified Nursing Assistants help perform critical tasks that ensure patients are well-cared for and safe during their hospital stay. Checking vital signs, keeping patients clean, and other duties like this are extremely important for patient care and satisfaction."
 
   return (
@@ -15,8 +15,8 @@ const JobCard = ({selected}) => {
         <JobDescription>{duties}</JobDescription>
         <HorizontalLine />
         <BottomWrap>
-            <Date>2 days ago</Date>
-            <ApplyButton>More Details</ApplyButton>
+            <Date>{date && '2 days ago'}</Date>
+            <ApplyButton>{buttonName || 'More Details'}</ApplyButton>
         </BottomWrap>
     </JobWrapper>
   )
