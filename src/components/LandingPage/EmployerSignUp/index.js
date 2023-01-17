@@ -34,7 +34,7 @@ const EmployerSignUp = () => {
         try {await setDoc(doc(db, "employers", localStorage.getItem('userEmail')), {
             ...data, uid: uid
           });
-        navigate('/employer-profile')
+        navigate('/employer')
         } catch (e) {
             setError(true)
             setErrorMessage(e.message)
@@ -67,16 +67,16 @@ const EmployerSignUp = () => {
         }
     }
 
-    const goBack = () => {
-        navigate(-1)
-    }
+    // const goBack = () => {
+    //     navigate(-1)
+    // }
 
   return (
     <LoginContainer>
         <LoginWrap>
             
             <LeftSide>
-                <LogoWrap onClick={goBack} to="/"><Logo src={logo} /></LogoWrap>
+                <LogoWrap to="/"><Logo src={logo} /></LogoWrap>
                 <Svg src={svg} />
             </LeftSide>
 

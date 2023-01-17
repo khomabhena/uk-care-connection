@@ -51,7 +51,7 @@ const SignUp = () => {
 
         try {
             await FirebaseStorage().setData('applicants', data.email, {...data, uid: uid})
-            navigate('/profile')
+            navigate('/applicant')
         } catch (e) {
             setError(true)
             setErrorMessage(e.message)

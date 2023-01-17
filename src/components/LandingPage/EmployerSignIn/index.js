@@ -32,14 +32,14 @@ const EmployerSignIn = () => {
                 setCurrentUser(JSON.stringify(user))
                 localStorage.setItem('currentUser', JSON.stringify(user))
                 setAuthCredentials(user.uid, data.email)
-                navigate('/employer-profile')
+                navigate('/employer')
                 // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
                 setError(true)
                 setErrorMessage(errorCode.includes('user-not-found') ? 'User not Found' : 'Incorrect Email or Password')
-                navigate('/employer-profile')
+                navigate('/employer')
         });
     }
 

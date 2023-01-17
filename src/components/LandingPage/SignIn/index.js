@@ -32,7 +32,7 @@ const SignIn = () => {
                 setCurrentUser(JSON.stringify(user))
                 localStorage.setItem('currentUser', JSON.stringify(user))
                 setAuthCredentials(user.uid, data.email)
-                navigate('/profile')
+                navigate('/applicant')
                 // ...
             })
             .catch((error) => {
