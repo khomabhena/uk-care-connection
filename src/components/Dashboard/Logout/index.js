@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container } from './LogoutElements'
 
-const Logout = () => {
+const Logout = ({logout}) => {
   return (
-    <Container>Logout</Container>
+    <Container onClick={logout}>Logout</Container>
   )
 }
 

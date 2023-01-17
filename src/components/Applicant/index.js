@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import DashboardContainer from '../Dashboard/Container'
 import Logout from '../Dashboard/Logout'
 import MainContent from '../Dashboard/MainContent'
@@ -28,11 +28,13 @@ import JobCardDetails from './JobCardDetails'
 import Applications from './Applications'
 import ApplicationsDetails from './ApplicationsDetails'
 import ApplicationsMade from './ApplicationsMade'
+import { AuthContext } from '../Context/AuthContext'
 
 const ApplicantDashboard = () => {
-
+  
   const [isOpen, setIsOpen] = useState(true)
   const [active, setActive] = useState('Profile')
+  const { logoutUser } = useContext(AuthContext)
   
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
@@ -55,6 +57,11 @@ const ApplicantDashboard = () => {
       )
     })
   }
+
+
+  const logout = () => {
+    logoutUser()
+  }
   
 
   return (
@@ -67,7 +74,7 @@ const ApplicantDashboard = () => {
         <Navbar>
           <MenuIcon toggleSidebar={toggleSidebar} className='applicant-menu' title='Applicant Dashboard' />
           <NavbarDetails image={person} name='Emily Burner'>
-            <Logout />
+            <Logout logout={logout} />
           </NavbarDetails>
         </Navbar>
 
