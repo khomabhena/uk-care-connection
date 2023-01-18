@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, SubHeading } from './UpdateElements'
 
-const Update = ({children}) => {
+const Update = ({title, children}) => {
   return (
     <Container>
-        <SubHeading>Update Personal Details</SubHeading>
+        <SubHeading>{title || 'Update Personal Details'}</SubHeading>
         {children}
     </Container>
   )

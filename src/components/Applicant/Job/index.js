@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, SubHeading } from './JobElements'
 
-const Job = ({children}) => {
+const Job = ({title, children}) => {
   return (
     <Container>
-        <SubHeading>Suggested Jobs</SubHeading>
+        <SubHeading>{title || 'Suggested Jobs'}</SubHeading>
         <SubHeading>Job Full Details</SubHeading>
         {children}
     </Container>

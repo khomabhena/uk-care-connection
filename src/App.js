@@ -9,6 +9,7 @@ import EmployerSignUp from './components/LandingPage/EmployerSignUp'
 import { useContext } from 'react';
 import { AuthContext } from './components/Context/AuthContext';
 import ApplicantDashboard from './components/Applicant';
+import EmployerDashboard from './components/Employer';
 
 function App() {
 
@@ -18,10 +19,9 @@ function App() {
     return currentUser ? children : <Navigate to='/sign-in' />
   }
 
-  
-  // const IsEmployerAuthorized = ({ children }) => {
-  //   return currentUser ? children : <Navigate to='/employer-sign-in' />
-  // } 
+  const IsEmployerAuthorized = ({ children }) => {
+    return currentUser ? children : <Navigate to='/employer-sign-in' />
+  } 
 
   return (
     <BrowserRouter>
@@ -34,7 +34,7 @@ function App() {
         <Route path='/employer-sign-in' element={<EmployerSignIn />} />
 
         <Route path='/applicant' element={<IsUserAuthorized> <ApplicantDashboard /> </IsUserAuthorized>} />
-        {/* <Route path='/employer' element={<IsEmployerAuthorized> <EmployerProfilePage /> </IsEmployerAuthorized>} /> */}
+        <Route path='/employer' element={<IsEmployerAuthorized> <EmployerDashboard /> </IsEmployerAuthorized>} />
       </Routes>
     </BrowserRouter>
   );
