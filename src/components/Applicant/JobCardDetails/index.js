@@ -1,40 +1,40 @@
 import React from 'react'
 import { ApplyButton, BottomTitle, ButtonBack, CompanyName, Heading, JobDetailsWrapper, Text, Title, TopContainer, TopTitle, TopWrap } from './JobCardDetailsElements'
 
-const JobCardDetails = ({status}) => {
+const JobCardDetails = ({data, status}) => {
     const duties = "Certified Nursing Assistants help perform critical tasks that ensure patients are well-cared for and safe during their hospital stay. Checking vital signs, keeping patients clean, and other duties like this are extremely important for patient care and satisfaction."
 
   return (
     <JobDetailsWrapper >
         <ButtonBack>Back to Jobs</ButtonBack>
-        <Title>Assistant Nurse Aid</Title>
+        <Title>{data?.title || 'Assistant Nurse Aid'}</Title>
         <CompanyName>Uk Care Connection</CompanyName>
         <TopContainer>
             <TopWrap>
                 <TopTitle>Experience</TopTitle>
-                <BottomTitle>Minimum 1 Year</BottomTitle>
+                <BottomTitle>{data?.experience || 'Minimum 1 Year'}</BottomTitle>
             </TopWrap>
             <TopWrap>
                 <TopTitle>Employment Type</TopTitle>
-                <BottomTitle>Full Time</BottomTitle>
+                <BottomTitle>{data?.type || 'Full Time'}</BottomTitle>
             </TopWrap>
             <TopWrap>
                 <TopTitle>Location</TopTitle>
-                <BottomTitle>Bristol</BottomTitle>
+                <BottomTitle>{data?.country || 'Bristol'}</BottomTitle>
             </TopWrap>
             <TopWrap>
                 <TopTitle>Salary per Month</TopTitle>
-                <BottomTitle>$1200</BottomTitle>
+                <BottomTitle>{data?.salary || '$1200'}</BottomTitle>
             </TopWrap>
         </TopContainer>
         <Heading>Job Description</Heading>
-        <Text>{duties}</Text>
+        <Text>{data?.description || duties}</Text>
         <Heading>Responsibilities</Heading>
-        <Text>{duties}</Text>
+        <Text>{data?.responsibilities || duties}</Text>
         <Heading>Qualification</Heading>
-        <Text>{duties}</Text>
+        <Text>{data?.qualifications || duties}</Text>
         <Heading>Skills &amp; Experience</Heading>
-        <Text>{duties}</Text>
+        <Text>{data?.skills || duties}</Text>
         <ApplyButton>{status || 'Apply for this Job'}</ApplyButton>
     </JobDetailsWrapper>
   )

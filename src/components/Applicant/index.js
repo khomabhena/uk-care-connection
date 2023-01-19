@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DashboardContainer from '../Dashboard/Container'
 import Logout from '../Dashboard/Logout'
 import MainContent from '../Dashboard/MainContent'
@@ -29,13 +29,47 @@ import Applications from './Applications'
 import ApplicationsDetails from './ApplicationsDetails'
 import ApplicationsMade from './ApplicationsMade'
 import { AuthContext } from '../Context/AuthContext'
-import PDFViewer from '../Dashboard/PDF'
+import { ApplicantControls, FirebaseStorage } from '../../controls'
+// import PDFViewer from '../Dashboard/PDF'
 
 const ApplicantDashboard = () => {
   
   const [isOpen, setIsOpen] = useState(true)
   const [active, setActive] = useState('Profile')
+  const [activeJob, setActiveJob] = useState(0)
+
   const { logoutUser } = useContext(AuthContext)
+  const [data, setData] = useState(null)
+  const [jobs, setJobs] = useState([])
+  const [jobDetails, setJobDetails] = useState(null)
+
+  useEffect(() => {
+    const applicantControls = ApplicantControls()
+    
+    const getData = async () => {
+      const res = await applicantControls.getData()
+      setData(res)
+    }
+
+    const getJobs = async () => {
+      const jobsArray = []
+      const res = await FirebaseStorage().getAllData('jobs')
+      
+      res.forEach(item => {
+        let newObject = {}
+        item.data.jobs.forEach(obj => {
+          newObject = {...obj, id: item.id}
+          jobsArray.push(newObject)
+        })
+      })
+
+      setJobs(jobsArray)
+      setJobDetails(jobsArray[0])
+    }
+
+    getJobs()
+    getData()
+  }, [])
   
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
@@ -43,6 +77,11 @@ const ApplicantDashboard = () => {
 
   const handleClick = (name) => {
     setActive(name)
+  }
+
+  const handleJobClick = (index, item) => {
+    setActiveJob(index)
+    setJobDetails(item)
   }
 
   const getMenuItems = () => {
@@ -59,6 +98,18 @@ const ApplicantDashboard = () => {
     })
   }
 
+  const getJobs = () => {
+    return jobs?.map((item, index) => {
+      return (
+        <JobCard
+          data={item}
+          handleClick={() => handleJobClick(index, item)}
+          active={activeJob === index}
+          key={index} 
+          date={true} />
+      )
+    })
+  }
 
   const logout = () => {
     logoutUser()
@@ -74,14 +125,14 @@ const ApplicantDashboard = () => {
       <MainContent isOpen={isOpen} className='applicant-main-content'>
         <Navbar>
           <MenuIcon toggleSidebar={toggleSidebar} className='applicant-menu' title='Applicant Dashboard' />
-          <NavbarDetails image={person} name='Emily Burner'>
+          <NavbarDetails image={data?.profileUrl} name={"Hi, " + data?.firstName}>
             <Logout logout={logout} />
           </NavbarDetails>
         </Navbar>
 
         {active === 'Profile' && <Overview>
-          <OverviewInfo></OverviewInfo>
-          <OverviewAbout></OverviewAbout>
+          <OverviewInfo data={data} />
+          <OverviewAbout data={data} />
         </Overview>}
 
         { 
@@ -110,11 +161,10 @@ const ApplicantDashboard = () => {
           active === 'Jobs' &&
             <Job>
               <JobsSuggested>
-                <JobCard selected={true} date={true} />
-                <JobCard date={true} />
+                {getJobs()}
               </JobsSuggested>
               <JobDetails>
-                <JobCardDetails />
+                <JobCardDetails data={jobDetails} />
               </JobDetails>
             </Job>
         }

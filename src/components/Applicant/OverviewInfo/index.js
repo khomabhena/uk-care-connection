@@ -6,14 +6,14 @@ import { FiTwitter, FiPhoneCall } from 'react-icons/fi'
 import { HiDocumentText } from 'react-icons/hi'
 import Img from '../../../images/person.jpg' 
 
-const OverviewInfo = ({children}) => {
+const OverviewInfo = ({ data }) => {
   return (
     <Container>
       <ProfileImgWrap>
-              <ProfileImage className='info-profile' src={Img} />
+              <ProfileImage className='info-profile' src={data?.profileUrl || Img} />
             </ProfileImgWrap>
-            <Name className="info-name">Emily Burner</Name>
-            <Profession className="info-profession">Hospice Care</Profession>
+            <Name className="info-name">{data?.firstName + " " + data?.lastName ||'Emily Burner'}</Name>
+            <Profession className="info-profession">{data?.profession || 'Hospice Care'}</Profession>
             <SocialMediaWrap>
               <IconWrap><FaFacebook /></IconWrap>
               <IconWrap><FiTwitter /></IconWrap>
@@ -30,10 +30,10 @@ const OverviewInfo = ({children}) => {
                   <IconWrapOutline>
                     <HiDocumentText />
                   </IconWrapOutline>
-                  <Text className="info-cv">MyCV.pdf</Text>
+                  <Text className="info-cv">{data?.cv || 'No CV.pdf'}</Text>
                 </DocumentLeft>
                 <DocumentRight>
-                  <IconWrapA className='info-download-resume' download>
+                  <IconWrapA href={data?.cvUrl} className='info-download-resume' download>
                     <IconWrapOutline>
                       <BsDownload />
                     </IconWrapOutline>
@@ -48,15 +48,15 @@ const OverviewInfo = ({children}) => {
               <Title>Contacts</Title>
               <ContactWrap>
                 <ContactTitle>Email</ContactTitle>
-                <Text className="info-email">colwanymab@gmail.com</Text>
+                <Text className="info-email">{data?.email || 'youremail@gmail.com'}</Text>
               </ContactWrap>
               <ContactWrap>
                 <ContactTitle>Phone Number</ContactTitle>
-                <Text className="info-phone">+263774876886</Text>
+                <Text className="info-phone">{data?.phone ||'+263774******'}</Text>
               </ContactWrap>
               <ContactWrap>
                 <ContactTitle>Country</ContactTitle>
-                <Text className="info-country">Zimbabwe</Text>
+                <Text className="info-country">{data?.country || 'Zim'}</Text>
               </ContactWrap>
             </ContactContainer>
     </Container>
