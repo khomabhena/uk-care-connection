@@ -26,11 +26,15 @@ import ApplicationsDetails from '../Applicant/ApplicationsDetails'
 import Update from '../Applicant/Update'
 import UpdateForm from './UpdateForm'
 import PostJob from './PostJob'
+import ApplicationsCard from './ApplicationsCard'
+import ApplicantsCard from './ApplicantsCard'
+import ApplicantDetails from './ApplicantDetails'
 
 const EmployerDashboard = () => {
 
     const [isOpen, setIsOpen] = useState(true)
     const [active, setActive] = useState('Profile')
+    const [isActiveApplicant, setIsActiveApplicant] = useState('one')
     const { logoutUser } = useContext(AuthContext)
 
     const toggleSidebar = () => {
@@ -39,6 +43,10 @@ const EmployerDashboard = () => {
 
     const handleClick = (name) => {
         setActive(name)
+    }
+
+    const handleApplicantClick = (name) => {
+        setIsActiveApplicant(name)
     }
 
     const getMenuItems = () => {
@@ -97,10 +105,14 @@ const EmployerDashboard = () => {
                 active === 'Job Applications' &&
                     <Applications title1='Job Applications' title2='Applicant Details'>
                         <ApplicationMade>
-
+                            <ApplicationsCard>
+                                <ApplicantsCard handleClick={() => handleApplicantClick('one')} active={isActiveApplicant === 'one'} />
+                                <ApplicantsCard handleClick={() => handleApplicantClick('two')} active={isActiveApplicant === 'two'} />
+                                <ApplicantsCard handleClick={() => handleApplicantClick('three')} active={isActiveApplicant === 'three'} />
+                            </ApplicationsCard>
                         </ApplicationMade>
                         <ApplicationsDetails>
-
+                            <ApplicantDetails />
                         </ApplicationsDetails>
                     </Applications>
             }

@@ -29,6 +29,7 @@ import Applications from './Applications'
 import ApplicationsDetails from './ApplicationsDetails'
 import ApplicationsMade from './ApplicationsMade'
 import { AuthContext } from '../Context/AuthContext'
+import PDFViewer from '../Dashboard/PDF'
 
 const ApplicantDashboard = () => {
   
@@ -86,7 +87,8 @@ const ApplicantDashboard = () => {
         { 
           active === 'Update' && 
             <Update>
-              <UpdateForm />
+              {/* <UpdateForm /> */}
+              <PDFViewer />
             </Update>
         }
 

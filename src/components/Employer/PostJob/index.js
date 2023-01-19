@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonWrap, Container, FileChooser, Form, Input, InputContainer, InputLabel, InputWrap, Option, Select, TextArea, Title, UpdateButton } from './PostJobElements'
+import { ButtonWrap, Container, Form, Input, InputContainer, InputLabel, InputWrap, Option, Select, TextArea, UpdateButton } from './PostJobElements'
 
 const PostJob = () => {
   return (
