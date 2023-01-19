@@ -72,3 +72,8 @@
   color: var(--blue400);
   /* font-size: 6rem; */
 }
+
+.react-pdf__Page__textContent {
+  visibility: hidden;
+  background-color: red;
+}

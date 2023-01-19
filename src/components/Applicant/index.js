@@ -87,8 +87,8 @@ const ApplicantDashboard = () => {
         { 
           active === 'Update' && 
             <Update>
-              {/* <UpdateForm /> */}
-              <PDFViewer />
+              <UpdateForm />
+              {/* <PDFViewer /> */}
             </Update>
         }
 
