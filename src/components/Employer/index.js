@@ -29,6 +29,7 @@ import PostJob from './PostJob'
 import ApplicationsCard from './ApplicationsCard'
 import ApplicantsCard from './ApplicantsCard'
 import ApplicantDetails from './ApplicantDetails'
+import { EmployerControls } from '../../controls'
 
 const EmployerDashboard = () => {
 
@@ -66,6 +67,13 @@ const EmployerDashboard = () => {
 
     const logout = () => {
         logoutUser()
+    }
+
+    const postJob = async (event) => {
+        event.preventDefault()
+        setActive('My Jobs')
+        EmployerControls().Job().uploadJob('Uk Care Connection')
+
     }
 
   return (
@@ -125,7 +133,7 @@ const EmployerDashboard = () => {
             {
                 active === 'Post Job' &&
                     <Update title='Create Job Post'>
-                        <PostJob />
+                        <PostJob postJob={postJob} />
                     </Update>
             }
 

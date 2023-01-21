@@ -18,6 +18,12 @@ export const FirebaseStorage = () => {
 
     }
 
+    const getUniqueId = (path) => {
+        const docRef = doc(collection(db, path))
+
+        return docRef.id
+    }
+
     const updateData = async (path, id, data) => {
         const ref = doc(db, path, id)
         await updateDoc(ref, data)
@@ -67,7 +73,7 @@ export const FirebaseStorage = () => {
         })
     }
 
-    return { setData, getData, getAllData, updateData, addData, uploadFile, deleteFile }
+    return { getUniqueId, setData, getData, getAllData, updateData, addData, uploadFile, deleteFile }
 }
 
 export const ApplicantControls = () => {
@@ -394,26 +400,41 @@ export const EmployerControls = () => {
 
     const Job = () => {
 
-        const getFormData = () => {
-            const title = document.querySelector('.title').value
-            const salary = document.querySelector('.salary').value
-            const country = document.querySelector('.country').value
-            const profession = document.querySelector('.job-profession').value
-            const description = document.querySelector('.description').value
+        const getFormData = (company) => {
+            const title = document.querySelector('.input-job-title')?.value
+            const salary = document.querySelector('.job-salary')?.value
+            const country = document.querySelector('.job-country')?.value
+            const profession = document.querySelector('.job-profession')?.value
+            const experience = document.querySelector('.job-experience')?.value
+            const type = document.querySelector('.job-type')?.value
+            const description = document.querySelector('.job-description')?.value
+            const responsibilities = document.querySelector('.job-responsibilities')?.value
+            const qualifications = document.querySelector('.job-qualifications')?.value
+            const skills = document.querySelector('.job-skills')?.value
+            const jobUid = FirebaseStorage().getUniqueId(JOBS)
+            const email = EMAIL
 
             return {
                 title,
                 salary,
                 country,
+                jobUid,
+                email,
                 profession,
+                experience,
+                type,
                 description,
+                responsibilities,
+                qualifications,
+                skills,
+                company,
                 date: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
             }
         }
 
-        const uploadJob = async () => {
+        const uploadJob = async (company) => {
             const data = await FirebaseStorage().getData(JOBS, EMAIL)
-            const formData = getFormData()
+            const formData = getFormData(company)
 
             let jobs = data
             if (jobs === undefined) {
@@ -422,13 +443,13 @@ export const EmployerControls = () => {
                 FirebaseStorage().setData(JOBS, EMAIL, {jobs: jobs})
             } else {
                 const job = data.jobs
-                job.push(formData)
+                job.unshift(formData)
                 FirebaseStorage().updateData(JOBS, EMAIL, {jobs: job})
             }
             
         }
         
-        return { uploadJob }
+        return { uploadJob, getFormData }
     }
 
     return { Nav, Update, Info, Job }
