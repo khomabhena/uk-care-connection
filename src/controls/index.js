@@ -6,6 +6,8 @@ const APPLICANTS = 'applicants'
 const EMPLOYERS = 'employers'
 const JOBS = 'jobs'
 const EMAIL = localStorage.getItem('userEmail')
+const APPLICATIONS = 'applications-applicants'
+const APPLICATIONS_EMPLOYER = 'applications-employer'
 
 export const FirebaseStorage = () => {
 
@@ -117,6 +119,40 @@ export const ApplicantControls = () => {
 
         return { setInfoDetails };
     };
+
+    const Job = () => {
+        const applyForJob = async (dataToUpload) => {
+            const data = await FirebaseStorage().getData(APPLICATIONS, EMAIL)
+
+            let applications = data
+            if (applications === undefined) {
+                applications = []
+                applications.push(dataToUpload)
+                FirebaseStorage().setData(APPLICATIONS, EMAIL, {applications: applications})
+            } else {
+                const applications = data.applications
+                applications.unshift(dataToUpload)
+                FirebaseStorage().updateData(APPLICATIONS, EMAIL, {applications: applications})
+            }   
+        }
+
+        const applyToEmployer = async (dataToUpload, email) => {
+            const data = await FirebaseStorage().getData(APPLICATIONS_EMPLOYER, email)
+
+            let applications = data
+            if (applications === undefined) {
+                applications = []
+                applications.push(dataToUpload)
+                FirebaseStorage().setData(APPLICATIONS_EMPLOYER, email, {applications: applications})
+            } else {
+                const applications = data.applications
+                applications.unshift(dataToUpload)
+                FirebaseStorage().updateData(APPLICATIONS, email, {applications: applications})
+            }   
+        }
+
+        return { applyForJob, applyToEmployer }
+    }
 
     const Overview = () => {
 
@@ -262,7 +298,7 @@ export const ApplicantControls = () => {
         return { uploadData }
     }
 
-    return { getData, Nav, Info, Overview, Update, Qualifications, Experience };
+    return { getData, Job, Nav, Info, Overview, Update, Qualifications, Experience };
 
 }
 

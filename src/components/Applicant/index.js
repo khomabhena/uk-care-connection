@@ -84,6 +84,15 @@ const ApplicantDashboard = () => {
     setJobDetails(item)
   }
 
+  const applyForJob = (jobUid, email) => {
+    const applicantEmail = localStorage.getItem('userEmail')
+    const dataApplicant = {...jobDetails, jobUid: jobUid, jobEmail: email}
+    const dataEmployer = {...data, jobUid: jobUid, applicantEmail: applicantEmail}
+    
+    ApplicantControls().Job().applyForJob(dataApplicant)
+    ApplicantControls().Job().applyToEmployer(dataEmployer, email)
+  }
+
   const getMenuItems = () => {
     return ApplicantData().getMenuItems()?.map(({name, icon}, index) => {
       return (
@@ -125,7 +134,7 @@ const ApplicantDashboard = () => {
       <MainContent isOpen={isOpen} className='applicant-main-content'>
         <Navbar>
           <MenuIcon toggleSidebar={toggleSidebar} className='applicant-menu' title='Applicant Dashboard' />
-          <NavbarDetails image={data?.profileUrl} name={"Hi, " + data?.firstName}>
+          <NavbarDetails image={data?.profileUrl || person} name={"Hi, " + data?.firstName}>
             <Logout logout={logout} />
           </NavbarDetails>
         </Navbar>
@@ -133,45 +142,36 @@ const ApplicantDashboard = () => {
         {active === 'Profile' && <Overview>
           <OverviewInfo data={data} />
           <OverviewAbout data={data} />
-        </Overview>}
+        </Overview>
+        }
 
-        { 
-          active === 'Update' && 
-            <Update>
+        { active === 'Update' &&  <Update>
               <UpdateForm />
               {/* <PDFViewer /> */}
             </Update>
         }
 
-        {
-          active === 'Qualifications' &&
-            <Qualifications>
+        { active === 'Qualifications' && <Qualifications>
               <QualificationForm />
-            </Qualifications>
+            </Qualifications> 
         }
 
-        {
-          active === 'Experience' &&
-            <Experience>
+        {  active === 'Experience' && <Experience>
               <ExperienceForm />
-            </Experience>
+            </Experience>  
         }
 
-        {
-          active === 'Jobs' &&
-            <Job>
+        { active === 'Jobs' && <Job>
               <JobsSuggested>
                 {getJobs()}
               </JobsSuggested>
               <JobDetails>
-                <JobCardDetails data={jobDetails} />
+                <JobCardDetails handleClick={applyForJob} data={jobDetails} />
               </JobDetails>
-            </Job>
+            </Job> 
         }
 
-        {
-          active === 'Applications' &&
-            <Applications>
+        { active === 'Applications' &&  <Applications>
               <ApplicationsMade>
                 <JobCard selected={true} pending={true} buttonName='Rejected' />
                 <JobCard buttonName='Pending' />

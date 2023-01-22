@@ -1,7 +1,7 @@
 import React from 'react'
 import { ApplyButton, BottomTitle, ButtonBack, CompanyName, Heading, JobDetailsWrapper, Text, Title, TopContainer, TopTitle, TopWrap } from './JobCardDetailsElements'
 
-const JobCardDetails = ({data, status}) => {
+const JobCardDetails = ({data, status, handleClick}) => {
     const duties = "Certified Nursing Assistants help perform critical tasks that ensure patients are well-cared for and safe during their hospital stay. Checking vital signs, keeping patients clean, and other duties like this are extremely important for patient care and satisfaction."
 
   return (
@@ -35,7 +35,7 @@ const JobCardDetails = ({data, status}) => {
         <Text>{data?.qualifications || duties}</Text>
         <Heading>Skills &amp; Experience</Heading>
         <Text>{data?.skills || duties}</Text>
-        <ApplyButton>{status || 'Apply for this Job'}</ApplyButton>
+        <ApplyButton onClick={() => handleClick(data?.jobUid, data?.email)}>{status || 'Apply for this Job'}</ApplyButton>
     </JobDetailsWrapper>
   )
 }
