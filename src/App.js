@@ -16,11 +16,11 @@ function App() {
   const { currentUser } = useContext(AuthContext)
 
   const IsUserAuthorized = ({ children }) => {
-    return currentUser ? children : <Navigate to='/sign-in' />
+    return currentUser ? children : <Navigate to='/' />
   }
 
   const IsEmployerAuthorized = ({ children }) => {
-    return currentUser ? children : <Navigate to='/employer-sign-in' />
+    return currentUser ? children : <Navigate to='/' />
   } 
 
   return (

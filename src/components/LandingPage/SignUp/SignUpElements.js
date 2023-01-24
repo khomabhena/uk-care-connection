@@ -88,7 +88,7 @@ export const TextWelcome = styled.p`
     font-weight: 700;
 `
 
-export const TextSignin = styled.p`
+export const TextSignIn = styled.p`
     font-size: 1.1rem;
     margin-top: 0.5rem;
     padding-bottom: 2rem;

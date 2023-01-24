@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { ErrorContainer, ErrorMessage, Input, Label, LeftSide, LoginButton, LoginContainer, 
-    LoginForm, LoginWrap, Logo, LogoWrap, RightSide, SignupButton, Svg, TextSignin, TextWelcome } from './SignUpElements'
+    LoginForm, LoginWrap, Logo, LogoWrap, RightSide, SignupButton, Svg, TextSignIn, TextWelcome } from './SignUpElements'
 import logo from '../../../images/logo-big.PNG'
 import svg from '../../../images/svg-signup.svg'
 import { ImWarning } from 'react-icons/im'
@@ -95,14 +95,14 @@ const SignUp = () => {
 
             <RightSide>
                 <TextWelcome>Let's Get Started</TextWelcome>
-                <TextSignin>Sign Up and get access to all the features.</TextSignin>
+                <TextSignIn>Sign Up and get access to all the features.</TextSignIn>
 
 
                 <LoginForm onSubmit={handleSignup}>
-                    <Label>Firstname</Label>
-                    <Input required type='text' placeholder='Enter your Firstname' onChange={(e) => setData(prev => ({...prev, firstName: e.target.value}))} />
-                    <Label>Lastname</Label>
-                    <Input required type='text' placeholder='Enter your Lastname' onChange={(e) => setData(prev => ({...prev, lastName: e.target.value}))} />
+                    <Label>First Name</Label>
+                    <Input required type='text' placeholder='Enter your First Name' onChange={(e) => setData(prev => ({...prev, firstName: e.target.value}))} />
+                    <Label>Last Name</Label>
+                    <Input required type='text' placeholder='Enter your Last Name' onChange={(e) => setData(prev => ({...prev, lastName: e.target.value}))} />
                     <Label>Email Address</Label>
                     <Input required type='email' placeholder='Enter your email address' onChange={(e) => setData(prev => ({...prev, email: e.target.value}))} />
                     <Label>Password</Label>

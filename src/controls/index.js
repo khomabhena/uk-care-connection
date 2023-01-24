@@ -121,7 +121,7 @@ export const ApplicantControls = () => {
     };
 
     const Job = () => {
-        const applyForJob = async (dataToUpload) => {
+        const applyForJob = async (dataToUpload, email) => {
             const data = await FirebaseStorage().getData(APPLICATIONS, EMAIL)
 
             let applications = data
@@ -147,7 +147,7 @@ export const ApplicantControls = () => {
             } else {
                 const applications = data.applications
                 applications.unshift(dataToUpload)
-                FirebaseStorage().updateData(APPLICATIONS, email, {applications: applications})
+                FirebaseStorage().updateData(APPLICATIONS_EMPLOYER, email, {applications: applications})
             }   
         }
 
@@ -488,7 +488,7 @@ export const EmployerControls = () => {
         return { uploadJob, getFormData }
     }
 
-    return { Nav, Update, Info, Job }
+    return { getData, Nav, Update, Info, Job }
 } 
 
 

@@ -19,7 +19,6 @@ const SignIn = () => {
         email: '',
         password: ''
     })
-    console.log(data.email)
 
     const handleLogin = (e) => {
         e.preventDefault()

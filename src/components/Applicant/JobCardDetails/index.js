@@ -24,7 +24,7 @@ const JobCardDetails = ({data, status, handleClick}) => {
             </TopWrap>
             <TopWrap>
                 <TopTitle>Salary per Month</TopTitle>
-                <BottomTitle>{data?.salary || '$1200'}</BottomTitle>
+                <BottomTitle>{'$'+data?.salary || '$1200'}</BottomTitle>
             </TopWrap>
         </TopContainer>
         <Heading>Job Description</Heading>
