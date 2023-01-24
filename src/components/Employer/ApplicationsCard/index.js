@@ -1,12 +1,12 @@
 import React from 'react'
 import { SubHeading, HorizontalLine, JobWrapper, Heading, HorizontalWrap } from './ApplicationsCardElements'
 
-const ApplicationsCard = ({selected, children}) => {
+const ApplicationsCard = ({title, selected, children}) => {
   return (
     <JobWrapper selected={selected}>
         <HorizontalWrap>
-            <Heading>Assistant Nurse Aid</Heading>
-            <SubHeading>9</SubHeading>
+            <Heading>{title || 'Assistant Nurse Aid'}</Heading>
+            <SubHeading></SubHeading>
         </HorizontalWrap>
         <HorizontalLine />
         {children}

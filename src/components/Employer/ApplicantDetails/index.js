@@ -2,20 +2,19 @@ import React from 'react'
 import { Text, SubTitle, Title } from '../../Applicant/OverviewInfo/OverviewInfoElements'
 import { Button, ButtonWrap, Container, EducationContainer, EducationDetailsWrap, EducationWrap, Language, Letter, LetterWrap, SkillsContainer, SkillsWrap } from './ApplicantDetailsElements'
 
-const ApplicantDetails = () => {
+const ApplicantDetails = ({data}) => {
     const about = "I am a dedicated and compassionate individual who strives to provide the best care I possibly can to patients. I'm excited by the prospect of working for a highly recognized long-term care facility like Crane & Jenkins, and I believe that my patient care skills make me a natural fit for this position."
   
-  const dataObj = []
   return (
     <Container>
         <Title>About</Title>
-        <Text className='overview-intro'>{about}</Text>
+        <Text className='overview-intro'>{data?.intro || about}</Text>
           
         <EducationContainer>
             <Title>Education</Title>
             {
             
-            dataObj['qualifications']?.map((item, index) => {
+            data?.qualifications?.map((item, index) => {
                 return (
                     <EducationWrap key={index}>
                     <LetterWrap>
@@ -45,7 +44,7 @@ const ApplicantDetails = () => {
         <Title>Experiences</Title>
         <EducationContainer>
         {
-            dataObj['experience']?.map((item, index) => {
+            data?.experience?.map((item, index) => {
                 return (
                 <EducationWrap key={index}>          
                     <LetterWrap>
@@ -75,7 +74,7 @@ const ApplicantDetails = () => {
         <Title>Spoken Languages</Title>
         <SkillsContainer>
         {
-            dataObj['languages']?.map((item, index) => {
+            data?.languages?.map((item, index) => {
             return (
                 <SkillsWrap key={index}>
                 <Language className='overview-languages'>{item}</Language>

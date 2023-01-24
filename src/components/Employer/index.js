@@ -36,12 +36,14 @@ const EmployerDashboard = () => {
     const [isOpen, setIsOpen] = useState(true)
     const [active, setActive] = useState('Profile')
     const [activeJob, setActiveJob] = useState(0)
-    const [isActiveApplicant, setIsActiveApplicant] = useState('one')
+    const [activeApplicant, setActiveApplicant] = useState('')
     
     const { logoutUser } = useContext(AuthContext)
     const [data, setData] = useState(null)
     const [jobs, setJobs] = useState([])
+    const [applicants, setApplicants] = useState([])
     const [jobDetails, setJobDetails] = useState(null)
+    const [applicantDetails, setApplicantDetails] = useState(null)
 
     useEffect(() => {
         const getData = async () => {
@@ -49,6 +51,7 @@ const EmployerDashboard = () => {
             setData(res)
         }
 
+        getApplicants()
         getJobs()
         getData()
     }, [])
@@ -61,6 +64,17 @@ const EmployerDashboard = () => {
             jobsArray = await res.jobs
             setJobs(jobsArray)
             setJobDetails(jobsArray[0])
+        }
+    }
+
+    const getApplicants = async () => {
+        let arr = []
+        const res = await FirebaseStorage().getData('applications-employer', localStorage.getItem('userEmail'))
+
+        if (res.applications !== undefined) {
+            arr = await res.applications
+            setApplicants(arr)
+            setApplicantDetails(arr[0])
         }
     }
 
@@ -77,8 +91,9 @@ const EmployerDashboard = () => {
         setJobDetails(item)
     }
 
-    const handleApplicantClick = (name) => {
-        setIsActiveApplicant(name)
+    const handleApplicantClick = (index, item) => {
+        setActiveApplicant(index)
+        setApplicantDetails(item)
     }
 
     const getMenuItems = () => {
@@ -108,6 +123,45 @@ const EmployerDashboard = () => {
             )
           })
     }
+
+    const getApplicantsCard = () => {
+        // return applicants?.map((item, index) => {
+        //     return (
+        //         <ApplicantsCard
+        //             data={item}
+        //             handleClick={() => handleApplicantClick(index, item)}
+        //             active={activeApplicant === index}
+        //             key={index} />
+        //     )
+        // })
+
+        const jobUidArr = applicants?.filter(item => item.jobUid)?.map(item => item.jobUid).filter(onlyUnique)
+        console.log(jobUidArr)
+        return jobUidArr?.map(uid => {
+            const name = jobs?.filter(item => item.jobUid === uid).map(item => item.title)[0]
+            console.log(name)
+                 
+            return (
+                <ApplicationsCard title={name}>
+                   {
+                    applicants?.filter(item => item.jobUid === uid).map((item, index) => {
+                        return (
+                            <ApplicantsCard
+                                data={item}
+                                handleClick={() => handleApplicantClick(item.email+item.jobUid, item)} 
+                                active={activeApplicant === item.email+item.jobUid}
+                                key={index}/>
+                        )
+                    })
+                   }
+                </ApplicationsCard>
+            )
+        })
+    }
+
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+      }
 
     const logout = () => {
         logoutUser()
@@ -156,14 +210,12 @@ const EmployerDashboard = () => {
                 active === 'Job Applications' &&
                     <Applications title1='Job Applications' title2='Applicant Details'>
                         <ApplicationMade>
-                            <ApplicationsCard>
-                                <ApplicantsCard handleClick={() => handleApplicantClick('one')} active={isActiveApplicant === 'one'} />
-                                <ApplicantsCard handleClick={() => handleApplicantClick('two')} active={isActiveApplicant === 'two'} />
-                                <ApplicantsCard handleClick={() => handleApplicantClick('three')} active={isActiveApplicant === 'three'} />
-                            </ApplicationsCard>
+                            {/* <ApplicationsCard> */}
+                                {getApplicantsCard()}
+                            {/* </ApplicationsCard> */}
                         </ApplicationMade>
                         <ApplicationsDetails>
-                            <ApplicantDetails />
+                            <ApplicantDetails data={applicantDetails} />
                         </ApplicationsDetails>
                     </Applications>
             }
