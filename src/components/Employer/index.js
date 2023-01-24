@@ -125,17 +125,7 @@ const EmployerDashboard = () => {
     }
 
     const getApplicantsCard = () => {
-        // return applicants?.map((item, index) => {
-        //     return (
-        //         <ApplicantsCard
-        //             data={item}
-        //             handleClick={() => handleApplicantClick(index, item)}
-        //             active={activeApplicant === index}
-        //             key={index} />
-        //     )
-        // })
-
-        const jobUidArr = applicants?.filter(item => item.jobUid)?.map(item => item.jobUid).filter(onlyUnique)
+        const jobUidArr = applicants?.map(item => item.jobUid).filter(onlyUnique)
         console.log(jobUidArr)
         return jobUidArr?.map(uid => {
             const name = jobs?.filter(item => item.jobUid === uid).map(item => item.title)[0]
