@@ -1,8 +1,8 @@
 import React from 'react'
 import { Text, SubTitle, Title } from '../../Applicant/OverviewInfo/OverviewInfoElements'
-import { Button, ButtonWrap, Container, EducationContainer, EducationDetailsWrap, EducationWrap, Language, Letter, LetterWrap, SkillsContainer, SkillsWrap } from './ApplicantDetailsElements'
+import { Container, EducationContainer, EducationDetailsWrap, EducationWrap, Language, Letter, LetterWrap, SkillsContainer, SkillsWrap } from './ApplicantDetailsElements'
 
-const ApplicantDetails = ({data}) => {
+const ApplicantDetails = ({children, data}) => {
     const about = "I am a dedicated and compassionate individual who strives to provide the best care I possibly can to patients. I'm excited by the prospect of working for a highly recognized long-term care facility like Crane & Jenkins, and I believe that my patient care skills make me a natural fit for this position."
   
   return (
@@ -87,10 +87,7 @@ const ApplicantDetails = ({data}) => {
         }
         </SkillsContainer>
 
-        <ButtonWrap>
-            <Button isRed={true}>Reject</Button>
-            <Button>Accept</Button>
-        </ButtonWrap>
+        {children}
     </Container>
   )
 }

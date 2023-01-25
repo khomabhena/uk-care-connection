@@ -30,6 +30,8 @@ import ApplicationsCard from './ApplicationsCard'
 import ApplicantsCard from './ApplicantsCard'
 import ApplicantDetails from './ApplicantDetails'
 import { EmployerControls, FirebaseStorage } from '../../controls'
+import ButtonWrap from '../ButtonWrap'
+import MyButton from '../Button'
 
 const EmployerDashboard = () => {
 
@@ -78,6 +80,14 @@ const EmployerDashboard = () => {
         }
     }
 
+    const getUpdatedApplicant = async (item) => {
+        const data = await FirebaseStorage().getData('applicants', item.email)
+
+        if (data !== undefined) {
+            setApplicantDetails(data)
+        }
+    }
+
     const toggleSidebar = () => {
         setIsOpen(!isOpen)
     }
@@ -94,6 +104,14 @@ const EmployerDashboard = () => {
     const handleApplicantClick = (index, item) => {
         setActiveApplicant(index)
         setApplicantDetails(item)
+        // getUpdatedApplicant(item)
+    }
+
+    const approveApplication = async (jobUid, applicantEmail, jobEmail) => {
+        // const res = await 
+    }
+
+    const rejectApplication = async (jobUid, applicantEmail, jobEmail) => {
     }
 
     const getMenuItems = () => {
@@ -126,10 +144,8 @@ const EmployerDashboard = () => {
 
     const getApplicantsCard = () => {
         const jobUidArr = applicants?.map(item => item.jobUid).filter(onlyUnique)
-        console.log(jobUidArr)
         return jobUidArr?.map(uid => {
             const name = jobs?.filter(item => item.jobUid === uid).map(item => item.title)[0]
-            console.log(name)
                  
             return (
                 <ApplicationsCard title={name}>
@@ -205,7 +221,18 @@ const EmployerDashboard = () => {
                             {/* </ApplicationsCard> */}
                         </ApplicationMade>
                         <ApplicationsDetails>
-                            <ApplicantDetails data={applicantDetails} />
+                            <ApplicantDetails data={applicantDetails}>
+                                <ButtonWrap>
+                                    <MyButton
+                                        handleClick={() => rejectApplication(applicantDetails.jobUid, applicantDetails.email, applicantDetails.jobEmail)}
+                                        isRed={true}>Reject Application
+                                    </MyButton>
+                                    <MyButton
+                                        handleClick={() => approveApplication(applicantDetails.jobUid, applicantDetails.email, applicantDetails.jobEmail)}
+                                        >Approve Application
+                                    </MyButton>
+                                </ButtonWrap>
+                            </ApplicantDetails>
                         </ApplicationsDetails>
                     </Applications>
             }

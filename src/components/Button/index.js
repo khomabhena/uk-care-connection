@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button } from './ButtonElements'
 
-const MyButton = ({children, isRed}) => {
+const MyButton = ({children, handleClick, disabled, isRed}) => {
   return (
-    <Button isRed={isRed}>
+    <Button onClick={handleClick} isRed={isRed} disabled={disabled}>
       {children}
     </Button>
   )

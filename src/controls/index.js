@@ -151,7 +151,32 @@ export const ApplicantControls = () => {
             }   
         }
 
-        return { applyForJob, applyToEmployer }
+        const cancelApplication = async (applicantEmail, jobEmail, jobUid) => {
+            const data = await FirebaseStorage().getData(APPLICATIONS, applicantEmail)
+            let applicationsArray = []
+
+            if (data.applications !== undefined) {
+                applicationsArray = await data.applications
+                const newArr = applicationsArray.filter(item => item.jobUid !== jobUid)
+
+                FirebaseStorage().updateData(APPLICATIONS, applicantEmail, {applications: newArr})
+
+                cancelApplicationEmployer(applicantEmail, jobEmail, jobUid)
+            }
+        }
+
+        const cancelApplicationEmployer = async (applicantEmail, jobEmail, jobUid) => {
+            const data = await FirebaseStorage().getData(APPLICATIONS_EMPLOYER, jobEmail)
+            let applicationsArray = []
+
+            if (data.applications !== undefined) {
+                applicationsArray = await data.applications
+                const newArr = applicationsArray.filter(item => item.jobUid !== jobUid && item.email !== applicantEmail)
+                FirebaseStorage().updateData(APPLICATIONS_EMPLOYER, jobEmail, {applications: newArr})
+            }
+        }
+
+        return { applyForJob, applyToEmployer, cancelApplication }
     }
 
     const Overview = () => {

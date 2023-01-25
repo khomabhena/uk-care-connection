@@ -39,6 +39,7 @@ const ApplicantDashboard = () => {
   const [active, setActive] = useState('Profile')
   const [activeJob, setActiveJob] = useState(0)
   const [activeApplication, setActiveApplication] = useState(0)
+  const [applied, setApplied] = useState(false)
 
   const { logoutUser } = useContext(AuthContext)
   const [data, setData] = useState(null)
@@ -75,7 +76,7 @@ const ApplicantDashboard = () => {
     setJobs(jobsArray)
     setJobDetails(jobsArray[0])
   }
-
+  
   const getApplications = async () => {
     let applicationsArray = []
     const res = await FirebaseStorage().getData('applications-applicants', localStorage.getItem('userEmail'))
@@ -87,6 +88,8 @@ const ApplicantDashboard = () => {
     }
   }
 
+  
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
   }
@@ -94,11 +97,13 @@ const ApplicantDashboard = () => {
   const handleClick = (name) => {
     setActive(name)
     getApplications()
+    checkApplied()
   }
 
   const handleJobClick = (index, item) => {
     setActiveJob(index)
     setJobDetails(item)
+    checkApplied()
   }
 
   const handleApplicationClick = (index, item) => {
@@ -108,11 +113,18 @@ const ApplicantDashboard = () => {
 
   const applyForJob = (jobUid, email) => {
     const applicantEmail = localStorage.getItem('userEmail')
-    const dataApplicant = {...jobDetails, jobUid: jobUid}
-    const dataEmployer = {...data, jobUid: jobUid, jobEmail: email, applicantEmail: applicantEmail}
+    const dataApplicant = {...jobDetails, jobUid: jobUid, applicationStatus: 'Pending'}
+    const dataEmployer = {...data, jobUid: jobUid, jobEmail: email, applicantEmail: applicantEmail, applicationStatus: 'Pending'}
 
     ApplicantControls().Job().applyForJob(dataApplicant, applicantEmail)
     ApplicantControls().Job().applyToEmployer(dataEmployer, email)
+  }
+
+  const cancelApplication = (jobUid, email) => {
+      const applicantEmail = localStorage.getItem('userEmail')
+      const jobEmail = email
+
+      ApplicantControls().Job().cancelApplication(applicantEmail, jobEmail, jobUid)
   }
 
   const getMenuItems = () => {
@@ -160,6 +172,11 @@ const ApplicantDashboard = () => {
     logoutUser()
   }
   
+  const checkApplied = () => {
+    const appliedUid = applications?.map(item => item.jobUid)
+    const applied = appliedUid.includes(jobDetails.jobUid)
+    setApplied(applied)
+  }
 
   return (
     <DashboardContainer>
@@ -204,7 +221,7 @@ const ApplicantDashboard = () => {
               <JobDetails>
                 <JobCardDetails data={jobDetails}>
                   <ButtonWrap>
-                    <MyButton handleClick={() => applyForJob(jobDetails?.jobUid, jobDetails?.email)}>Apply for this Job</MyButton>
+                    <MyButton disabled={applied} handleClick={() => applyForJob(jobDetails?.jobUid, jobDetails?.email)}>{(applied && 'You have Applied') || 'Apply for this Job'}</MyButton>
                   </ButtonWrap>
                 </JobCardDetails>
               </JobDetails>
@@ -218,8 +235,12 @@ const ApplicantDashboard = () => {
               <ApplicationsDetails>
                 <JobCardDetails data={applicationDetails}>
                   <ButtonWrap>
-                    <MyButton isRed={true}>Cancel Application</MyButton>
-                    <MyButton>Status: Pending</MyButton>
+                    <MyButton 
+                      handleClick={() => cancelApplication(applicationDetails?.jobUid, applicationDetails?.email)} 
+                      isRed={true}>Cancel Application</MyButton>
+                    <MyButton
+                    disabled={true}
+                    >Status: {applicationDetails?.applicationStatus}</MyButton>
                   </ButtonWrap>
                 </JobCardDetails>
               </ApplicationsDetails>
