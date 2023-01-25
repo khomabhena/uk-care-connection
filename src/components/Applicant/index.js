@@ -30,7 +30,8 @@ import ApplicationsDetails from './ApplicationsDetails'
 import ApplicationsMade from './ApplicationsMade'
 import { AuthContext } from '../Context/AuthContext'
 import { ApplicantControls, FirebaseStorage } from '../../controls'
-// import PDFViewer from '../Dashboard/PDF'
+import ButtonWrap from '../ButtonWrap'
+import MyButton from '../Button'
 
 const ApplicantDashboard = () => {
   
@@ -201,7 +202,11 @@ const ApplicantDashboard = () => {
                 {getJobsCard()}
               </JobsSuggested>
               <JobDetails>
-                <JobCardDetails handleClick={applyForJob} data={jobDetails} />
+                <JobCardDetails data={jobDetails}>
+                  <ButtonWrap>
+                    <MyButton handleClick={() => applyForJob(jobDetails?.jobUid, jobDetails?.email)}>Apply for this Job</MyButton>
+                  </ButtonWrap>
+                </JobCardDetails>
               </JobDetails>
             </Job> 
         }
@@ -209,11 +214,14 @@ const ApplicantDashboard = () => {
         { active === 'Applications' &&  <Applications>
               <ApplicationsMade>
                 {getApplicationsCard()}
-                {/* <JobCard selected={true} pending={true} buttonName='Rejected' /> */}
-                {/* <JobCard buttonName='Pending' /> */}
               </ApplicationsMade>
               <ApplicationsDetails>
-                <JobCardDetails status='Pending' data={applicationDetails} />
+                <JobCardDetails data={applicationDetails}>
+                  <ButtonWrap>
+                    <MyButton isRed={true}>Cancel Application</MyButton>
+                    <MyButton>Status: Pending</MyButton>
+                  </ButtonWrap>
+                </JobCardDetails>
               </ApplicationsDetails>
             </Applications>
         }
