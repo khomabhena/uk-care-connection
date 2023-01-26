@@ -13,6 +13,7 @@ export const AuthContextProvider = ({children}) => {
         setUserEmail('')
         setUserUid('')
         localStorage.clear()
+        // window.location.reload()
     }
 
     const setAuthCredentials = (uid, email) => {

@@ -5,7 +5,7 @@ import { db } from "../Firebase"
 const APPLICANTS = 'applicants'
 const EMPLOYERS = 'employers'
 const JOBS = 'jobs'
-const EMAIL = localStorage.getItem('userEmail')
+// const EMAIL = 
 const APPLICATIONS = 'applications-applicants'
 const APPLICATIONS_EMPLOYER = 'applications-employer'
 
@@ -122,17 +122,17 @@ export const ApplicantControls = () => {
 
     const Job = () => {
         const applyForJob = async (dataToUpload, email) => {
-            const data = await FirebaseStorage().getData(APPLICATIONS, EMAIL)
+            const data = await FirebaseStorage().getData(APPLICATIONS, localStorage.getItem('userEmail'))
 
             let applications = data
             if (applications === undefined) {
                 applications = []
                 applications.push(dataToUpload)
-                FirebaseStorage().setData(APPLICATIONS, EMAIL, {applications: applications})
+                FirebaseStorage().setData(APPLICATIONS, localStorage.getItem('userEmail'), {applications: applications})
             } else {
                 const applications = data.applications
                 applications.unshift(dataToUpload)
-                FirebaseStorage().updateData(APPLICATIONS, EMAIL, {applications: applications})
+                FirebaseStorage().updateData(APPLICATIONS, localStorage.getItem('userEmail'), {applications: applications})
             }   
         }
 
@@ -254,11 +254,11 @@ export const ApplicantControls = () => {
             const { fileCV, fileID, fileProfilePicture  } = getFiles();
             const data = await getFormData()
 
-            if (fileCV !== undefined) FirebaseStorage().uploadFile(EMAIL, fileCV, APPLICANTS, EMAIL, data, 'cvUrl', 'cv')
-            if (fileID !== undefined) FirebaseStorage().uploadFile(EMAIL, fileID, APPLICANTS, EMAIL, data, 'idUrl', 'id')
-            if (fileProfilePicture !== undefined) FirebaseStorage().uploadFile(EMAIL, fileProfilePicture, APPLICANTS, EMAIL, data, 'profileUrl', 'profile')
+            if (fileCV !== undefined) FirebaseStorage().uploadFile(localStorage.getItem('userEmail'), fileCV, APPLICANTS, localStorage.getItem('userEmail'), data, 'cvUrl', 'cv')
+            if (fileID !== undefined) FirebaseStorage().uploadFile(localStorage.getItem('userEmail'), fileID, APPLICANTS, localStorage.getItem('userEmail'), data, 'idUrl', 'id')
+            if (fileProfilePicture !== undefined) FirebaseStorage().uploadFile(localStorage.getItem('userEmail'), fileProfilePicture, APPLICANTS, localStorage.getItem('userEmail'), data, 'profileUrl', 'profile')
             
-            FirebaseStorage().updateData(APPLICANTS, EMAIL, data)
+            FirebaseStorage().updateData(APPLICANTS, localStorage.getItem('userEmail'), data)
         };
 
 
@@ -280,7 +280,7 @@ export const ApplicantControls = () => {
         }
 
         const uploadData = async () => {
-            const data = await FirebaseStorage().getData(APPLICANTS, EMAIL)
+            const data = await FirebaseStorage().getData(APPLICANTS, localStorage.getItem('userEmail'))
             const formData = getFormData()
 
             let qualifications = await data.qualifications
@@ -288,7 +288,7 @@ export const ApplicantControls = () => {
                 qualifications = []
             }
             qualifications.push(formData)
-            FirebaseStorage().updateData(APPLICANTS, EMAIL, {qualifications})
+            FirebaseStorage().updateData(APPLICANTS, localStorage.getItem('userEmail'), {qualifications})
         }
 
         return { uploadData }
@@ -309,7 +309,7 @@ export const ApplicantControls = () => {
         }
 
         const uploadData = async () => {
-            const data = await FirebaseStorage().getData(APPLICANTS, EMAIL)
+            const data = await FirebaseStorage().getData(APPLICANTS, localStorage.getItem('userEmail'))
             const formData = getFormData()
 
             let experience = await data.experience
@@ -317,7 +317,7 @@ export const ApplicantControls = () => {
                 experience = []
             }
             experience.push(formData)
-            FirebaseStorage().updateData(APPLICANTS, EMAIL, {experience})
+            FirebaseStorage().updateData(APPLICANTS, localStorage.getItem('userEmail'), {experience})
         }
 
         return { uploadData }
@@ -330,7 +330,7 @@ export const ApplicantControls = () => {
 export const EmployerControls = () => {
 
     const getData = async () => {
-        const docRef = doc(db, EMPLOYERS, EMAIL);
+        const docRef = doc(db, EMPLOYERS, localStorage.getItem('userEmail'));
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -473,7 +473,7 @@ export const EmployerControls = () => {
             const qualifications = document.querySelector('.job-qualifications')?.value
             const skills = document.querySelector('.job-skills')?.value
             const jobUid = FirebaseStorage().getUniqueId(JOBS)
-            const email = EMAIL
+            const email = localStorage.getItem('userEmail')
 
             return {
                 title,
@@ -494,18 +494,18 @@ export const EmployerControls = () => {
         }
 
         const uploadJob = async (company) => {
-            const data = await FirebaseStorage().getData(JOBS, EMAIL)
+            const data = await FirebaseStorage().getData(JOBS, localStorage.getItem('userEmail'))
             const formData = getFormData(company)
 
             let jobs = data
             if (jobs === undefined) {
                 jobs = []
                 jobs.push(formData)
-                FirebaseStorage().setData(JOBS, EMAIL, {jobs: jobs})
+                FirebaseStorage().setData(JOBS, localStorage.getItem('userEmail'), {jobs: jobs})
             } else {
                 const job = data.jobs
                 job.unshift(formData)
-                FirebaseStorage().updateData(JOBS, EMAIL, {jobs: job})
+                FirebaseStorage().updateData(JOBS, localStorage.getItem('userEmail'), {jobs: job})
             }
             
         }
