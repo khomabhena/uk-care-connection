@@ -510,7 +510,30 @@ export const EmployerControls = () => {
             
         }
         
-        return { uploadJob, getFormData }
+        const approveOrRejectApplications = async (status, jobUid, applicantEmail, jobEmail) => {
+            const dataApplicant = await FirebaseStorage().getData(APPLICATIONS, applicantEmail)
+            const dataEmployer = await FirebaseStorage().getData(APPLICATIONS_EMPLOYER, jobEmail)
+
+            const newArrayApplicant = await dataApplicant?.applications.map(item => {
+                if (item.jobUid === jobUid) {
+                    item.applicationStatus = status
+                    return item
+                } else
+                    return item
+            })
+            const newArrayEmployer = await dataEmployer?.applications.map(item => {
+                if (item.jobUid === jobUid && item.email === applicantEmail) {
+                    item.applicationStatus = status
+                    return item
+                } else
+                    return item
+            })
+
+            FirebaseStorage().updateData(APPLICATIONS, applicantEmail, {applications: newArrayApplicant})
+            FirebaseStorage().updateData(APPLICATIONS_EMPLOYER, jobEmail, {applications: newArrayEmployer})
+        }
+
+        return { uploadJob, getFormData, approveOrRejectApplications }
     }
 
     return { getData, Nav, Update, Info, Job }

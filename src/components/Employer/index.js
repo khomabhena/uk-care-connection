@@ -108,10 +108,11 @@ const EmployerDashboard = () => {
     }
 
     const approveApplication = async (jobUid, applicantEmail, jobEmail) => {
-        // const res = await 
+        EmployerControls().Job().approveOrRejectApplications('Approved', jobUid, applicantEmail, jobEmail)
     }
-
+    
     const rejectApplication = async (jobUid, applicantEmail, jobEmail) => {
+        EmployerControls().Job().approveOrRejectApplications('Rejected', jobUid, applicantEmail, jobEmail)
     }
 
     const getMenuItems = () => {
