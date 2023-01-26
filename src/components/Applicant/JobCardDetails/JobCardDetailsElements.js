@@ -9,6 +9,14 @@ export const JobDetailsWrapper = styled.div`
     align-self: center;
 `
 
+export const TitleWrap = styled.div``
+
+export const UpperWrap = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+
 export const Title = styled.h3`
     color: var(--grey500);
 

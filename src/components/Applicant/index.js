@@ -233,14 +233,14 @@ const ApplicantDashboard = () => {
                 {getApplicationsCard()}
               </ApplicationsMade>
               <ApplicationsDetails>
-                <JobCardDetails data={applicationDetails}>
+                <JobCardDetails applicationStatus={applicationDetails?.applicationStatus} data={applicationDetails}>
                   <ButtonWrap>
                     <MyButton 
                       handleClick={() => cancelApplication(applicationDetails?.jobUid, applicationDetails?.email)} 
                       isRed={true}>Cancel Application</MyButton>
-                    <MyButton
+                    {/* <MyButton
                     disabled={true}
-                    >Status: {applicationDetails?.applicationStatus}</MyButton>
+                    >Status: {applicationDetails?.applicationStatus}</MyButton> */}
                   </ButtonWrap>
                 </JobCardDetails>
               </ApplicationsDetails>
