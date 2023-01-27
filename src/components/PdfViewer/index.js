@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5'
 import { Button, Container, HozWrap, MainContent, MainPage, Navigation, PageContent, PageName, PageNumber, Sidebar, SmallPage } from './PdfViewerElements'
-import file from '../../images/cv2.pdf'
+// import file from '../../images/cv2.pdf'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const PdfViewer = () => {
     const [numPages, setNumPages] = useState(null)
     const [pageNumber, setPageNumber] = useState(1)
+    const [pageName, setPageName] = useState(null)
+    const {file, fileName} = useParams()
 
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages)
+        setPageName(fileName)
     }
 
     const goToPrevPage = () => {
@@ -21,14 +25,19 @@ const PdfViewer = () => {
         )
     }
 
+    const navigate = useNavigate()
+    const closePage = () => {
+        navigate(-1)
+    }
+
   return (
     <Container>
         <Navigation>
             <HozWrap>
-                <Button>
+                {/* <Button>
                     <span class="pdf-icons material-symbols-outlined">menu</span>
-                </Button>
-                <PageName>sample.pdf</PageName>
+                </Button> */}
+                <PageName>{pageName || 'sample.pdf'}</PageName>
             </HozWrap>
             <HozWrap>
                 <Button onClick={goToPrevPage}>
@@ -39,15 +48,15 @@ const PdfViewer = () => {
                     <span class="pdf-icons material-symbols-outlined">arrow_forward_ios</span>
                 </Button>
             </HozWrap>
-            <Button>
+            <Button onClick={closePage}>
                 <span class="pdf-icons material-symbols-outlined">close</span>
             </Button>
         </Navigation>
         <MainContent>
-            <Sidebar>
+            {/* <Sidebar>
                 <SmallPage>1</SmallPage>
                 <SmallPage>2</SmallPage>
-            </Sidebar>
+            </Sidebar> */}
             <PageContent>
                 <MainPage>
                     <Document

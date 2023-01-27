@@ -23,7 +23,7 @@ export const Navigation = styled.div`
 
 export const MainContent = styled.div`
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr;
     min-height: calc(100vh - 90px);
     padding: 70px 0;
 
@@ -82,6 +82,8 @@ export const SmallPage = styled.div`
 `
 
 export const MainPage = styled.div`
-    background-color: var(--blue50);
-    width: 80%;
+    /* background-color: var(--blue50); */
+    /* width: 80%; */
+    display: flex;
+    justify-content: center;
 `
