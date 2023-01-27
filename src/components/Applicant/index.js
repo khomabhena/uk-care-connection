@@ -32,11 +32,12 @@ import { AuthContext } from '../Context/AuthContext'
 import { ApplicantControls, FirebaseStorage } from '../../controls'
 import ButtonWrap from '../ButtonWrap'
 import MyButton from '../Button'
+import PdfViewer from '../PdfViewer'
 
 const ApplicantDashboard = () => {
   
   const [isOpen, setIsOpen] = useState(true)
-  const [active, setActive] = useState('Profile')
+  const [active, setActive] = useState('pdf')
   const [activeJob, setActiveJob] = useState(0)
   const [activeApplication, setActiveApplication] = useState(0)
   const [applied, setApplied] = useState(false)
@@ -87,8 +88,6 @@ const ApplicantDashboard = () => {
       setApplicationDetails(applicationsArray[0])
     }
   }
-
-  
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
@@ -179,6 +178,8 @@ const ApplicantDashboard = () => {
   }
 
   return (
+    <>
+    {active === 'pdf' && <PdfViewer />}
     <DashboardContainer>
       <Sidebar isOpen={isOpen} className='applicant-sidebar'>
         <SidebarLogo isOpen={isOpen} />
@@ -211,6 +212,7 @@ const ApplicantDashboard = () => {
 
         {  active === 'Experience' && <Experience>
               <ExperienceForm />
+              {/* <PdfViewer /> */}
             </Experience>  
         }
 
@@ -249,6 +251,7 @@ const ApplicantDashboard = () => {
 
       </MainContent>
     </DashboardContainer>
+    </>
   )
 }
 

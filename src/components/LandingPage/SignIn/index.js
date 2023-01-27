@@ -37,7 +37,11 @@ const SignIn = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 setError(true)
-                setErrorMessage(errorCode.includes('user-not-found') ? 'User not Found' : 'Incorrect Email or Password')
+                setErrorMessage(errorCode.includes('user-not-found') 
+                    ? 'User not Found' 
+                    : errorCode.includes('network') 
+                    ? 'Network connection error'
+                    : 'Incorrect Email or Password')
         });
     }
 

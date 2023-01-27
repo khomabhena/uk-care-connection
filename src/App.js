@@ -10,6 +10,7 @@ import { useContext } from 'react';
 import { AuthContext } from './components/Context/AuthContext';
 import ApplicantDashboard from './components/Applicant';
 import EmployerDashboard from './components/Employer';
+import PdfViewer from './components/PdfViewer';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/employer-sign-up' element={<EmployerSignUp />} />
         <Route path='/employer-sign-in' element={<EmployerSignIn />} />
+        <Route path='/pdf' element={<PdfViewer />} />
 
         <Route path='/applicant' element={<IsUserAuthorized> <ApplicantDashboard /> </IsUserAuthorized>} />
         <Route path='/employer' element={<IsEmployerAuthorized> <EmployerDashboard /> </IsEmployerAuthorized>} />
