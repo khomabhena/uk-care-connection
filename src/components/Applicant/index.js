@@ -32,12 +32,11 @@ import { AuthContext } from '../Context/AuthContext'
 import { ApplicantControls, FirebaseStorage } from '../../controls'
 import ButtonWrap from '../ButtonWrap'
 import MyButton from '../Button'
-import PdfViewer from '../PdfViewer'
 
 const ApplicantDashboard = () => {
   
   const [isOpen, setIsOpen] = useState(true)
-  const [active, setActive] = useState('pdf')
+  const [active, setActive] = useState('Profile')
   const [activeJob, setActiveJob] = useState(0)
   const [activeApplication, setActiveApplication] = useState(0)
   const [applied, setApplied] = useState(false)
@@ -173,13 +172,11 @@ const ApplicantDashboard = () => {
   
   const checkApplied = () => {
     const appliedUid = applications?.map(item => item.jobUid)
-    const applied = appliedUid.includes(jobDetails.jobUid)
+    const applied = appliedUid.includes(jobDetails?.jobUid)
     setApplied(applied)
   }
 
   return (
-    <>
-    {active === 'pdf' && <PdfViewer />}
     <DashboardContainer>
       <Sidebar isOpen={isOpen} className='applicant-sidebar'>
         <SidebarLogo isOpen={isOpen} />
@@ -251,7 +248,6 @@ const ApplicantDashboard = () => {
 
       </MainContent>
     </DashboardContainer>
-    </>
   )
 }
 

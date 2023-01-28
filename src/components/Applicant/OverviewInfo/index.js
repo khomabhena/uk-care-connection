@@ -6,7 +6,7 @@ import { FiTwitter, FiPhoneCall } from 'react-icons/fi'
 import { HiDocumentText } from 'react-icons/hi'
 import Img from '../../../images/person.jpg' 
 
-const OverviewInfo = ({ data }) => {
+const OverviewInfo = ({ data, openPdf }) => {
   return (
     <Container>
       <ProfileImgWrap>
@@ -30,7 +30,7 @@ const OverviewInfo = ({ data }) => {
                   <IconWrapOutline>
                     <HiDocumentText />
                   </IconWrapOutline>
-                  <Text className="info-cv">{data?.cv || 'No CV.pdf'}</Text>
+                  <Text onClick={openPdf} className="info-cv">{data?.cv || 'No CV.pdf'}</Text>
                 </DocumentLeft>
                 <DocumentRight>
                   <IconWrapA href={data?.cvUrl} className='info-download-resume' download>

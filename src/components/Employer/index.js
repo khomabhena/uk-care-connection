@@ -80,13 +80,13 @@ const EmployerDashboard = () => {
         }
     }
 
-    const getUpdatedApplicant = async (item) => {
-        const data = await FirebaseStorage().getData('applicants', item.email)
+    // const getUpdatedApplicant = async (item) => {
+    //     const data = await FirebaseStorage().getData('applicants', item.email)
 
-        if (data !== undefined) {
-            setApplicantDetails(data)
-        }
-    }
+    //     if (data !== undefined) {
+    //         setApplicantDetails(data)
+    //     }
+    // }
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen)
